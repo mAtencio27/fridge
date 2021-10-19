@@ -18,8 +18,14 @@ app.use(express.static(path.resolve(__dirname, "..", "build")));
     
 //********************************************************************************* */
 
-app.get("/api/fridge", (req,res) => {
-    res.send("hello")
+app.get("/api/fridge", async (req,res) => {
+  const foods = await db.table("food")
+  res.json(foods)
+});
+
+app.post("/api/add", async (req,res) => {
+  const foods = await db.table("food")
+  res.json(foods)
 });
 
 //********************************************************************************** */
