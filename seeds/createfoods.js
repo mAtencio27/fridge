@@ -17,7 +17,7 @@ exports.seed = function(knex) {
 
 function getfoods() {
   const foods = JSON.parse(fs.readFileSync("./data/foods.json"));
-  const ret = []
+  const ret = [10]
   for(let food of foods){
     ret.push(food.name)
   }
