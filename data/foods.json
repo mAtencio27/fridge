@@ -1,0 +1,84 @@
+[
+    {
+        "name": "chicken",
+        "daysgood": 3
+    },
+    {
+        "name":"beef",
+        "daysgood":5
+        
+    },
+    {
+        "name":"pork",
+        "daysgood":5
+    },
+    {
+        "name":"ground meat",
+        "daysgood":2
+    },
+    {
+        "name":"fish",
+        "daysgood":2
+    },
+    {
+        "name":"tomato",
+        "daysgood":7
+    },
+    {
+        "name":"spinach",
+        "daysgood":7
+    },
+    {
+        "name":"mushroom",
+        "daysgood":9
+    },
+    {
+        "name":"onion",
+        "daysgood":14
+    },
+    {
+        "name":"cabbage",
+        "daysgood":14
+    },
+    {
+        "name":"eggplant",
+        "daysgood":10
+    },
+    {
+        "name":"zuccini",
+        "daysgood":15
+    },
+    {
+        "name":"bell pepper",
+        "daysgood":14
+    },
+    {
+        "name":"apple",
+        "daysgood":60
+    },
+    {
+        "name":"pineapple",
+        "daysgood":5
+    },
+    {
+        "name":"orange",
+        "daysgood":30
+    },
+    {
+        "name":"daikon",
+        "daysgood":14
+    },
+    {
+        "name":"carrot",
+        "daysgood":21
+    },
+    {
+        "name":"banana",
+        "daysgood":7
+    },
+    {
+        "name":"strawberry",
+        "daysgood":7
+    }
+
+]
