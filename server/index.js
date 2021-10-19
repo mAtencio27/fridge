@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 9000;
 
 (async () => {
   try {
-    console.log("Running migrations...");
+    console.log("Running migrations....");
     await db.migrate.latest();
 
     console.log("Starting express...");
