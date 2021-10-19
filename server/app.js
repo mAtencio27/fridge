@@ -18,9 +18,9 @@ app.use(express.static(path.resolve(__dirname, "..", "build")));
     
 //********************************************************************************* */
 
-app.get("/api/fridge", (req,res) => {
-    res.send("hello")
-});
+// app.get("/api/fridge", (req,res) => {
+//     res.send("hello")
+// });
 
 //********************************************************************************** */
 app.get("*", (req, res) => {
