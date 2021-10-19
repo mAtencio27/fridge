@@ -23,9 +23,34 @@ app.get("/api/fridge", async (req,res) => {
   res.json(foods)
 });
 
+//add foodName daysfresh
 app.post("/api/add", async (req,res) => {
+  //const addedFood = req.query.add
+  const foodName = req.query.foodName
+  const daysfresh = Number(req.query.daysfresh)
+  const obj = {foodName: foodName, daysfresh:daysfresh}
+
+  await db.table('food').insert(obj)
+
+  res.json("added to db")
+});
+
+// ?id
+app.delete("/api/delete" , async (req,res) => {
+  const foodId = Number(req.query.id)
   const foods = await db.table("food")
-  res.json(foods)
+  const itemDel = foods.filter((food)=> foodId === food.id)
+
+  const k = await db.table("food").where("id", itemDel[0].id).delete()
+
+  // for(let food of foods){
+  //   if(food.id === foodId){
+  //     console.log("here")
+  //   }
+  //   //console.log(typeof(food.id), typeof(foodId))
+  // }
+  res.json(`${itemDel[0].foodName} left the fridge`)
+
 });
 
 //********************************************************************************** */
