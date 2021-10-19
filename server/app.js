@@ -20,6 +20,8 @@ app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 app.get("/api/fridge", async (req,res) => {
   const foods = await db.table("food")
+  console.log(foods)
+  //const returndata = JSON.parse(foods)
   res.json(foods)
 });
 
@@ -32,7 +34,7 @@ app.post("/api/add", async (req,res) => {
 
   await db.table('food').insert(obj)
 
-  res.json("added to db")
+  res.json("added to db", obj)
 });
 
 // ?id
