@@ -2,28 +2,21 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import AllGroceries from './components/allgroceries';
-//import axios from 'axios';
+import axios from 'axios';
 //import { response } from 'express';
 //import Navbar from './components/navbar';
 
 function App() {
-
-
   const [foods,setFoods] = useState([]);
-
-  const [newFood,setNewFood] = useState("")
-
-  const [newDate, setNewDate] = useState("")
-
-
+  const [newFood,setNewFood] = useState("");
+  const [newDate, setNewDate] = useState("");
+  const [entry, setEntry] = useState({})
 
   useEffect(() => {
     const fetchfood = async () => {
       const food = await fetch("/api/fridge")
       const foodConvert = await food.json()
-
       setFoods(foodConvert);
-
       return foodConvert
     }
     fetchfood()
@@ -39,34 +32,36 @@ function App() {
     setNewDate(e.target.value)
   }
 
-  // function handleSubmit (e) {
-  //   e.preventDefault()
-  //   let addfood = {foodName:newFood, daysfresh:Number(newDate)}
-  //   axios.post("/api/add", addfood)
-  //     .then(response => {
-  //       console.log(response)
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     })
-  // }
+  async function handleSubmit (e) {
+    e.preventDefault()
+    let addfood = {"foodName":newFood, "daysfresh":Number(newDate)}
+    //setEntry(`{"foodName":${newFood}, "daysfresh":${Number(newDate)}}`)
+    //let addfood = entry.json()
+    console.log(addfood)
+    axios.post("/api/add", addfood)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
     
   // async function handleSubmit(e) {
-  //   //let addfood = {"foodName":newFood, "daysfresh":Number(newDate)
-  //   //let addfood = newob
-  //   let addfood = {id:"100", foodName:"popcorn", daysfresh:"2"}
-  //    //console.log(JSON.stringify(addfood))
-
   //   e.preventDefault();
+  //   //let addfood = {"foodName":newFood, "daysfresh":Number(newDate)}
+  //   //let addfood = newob
+  //   //let addfood = {"foodName":"popcorn", "daysfresh":2}
+  //   //console.log(JSON.stringify(addfood))
 
-  //   const response = await fetch("/api/add", {
-  //     method:'POST',
-  //     mode:'cors',
-  //     headers: {'Accept':'application/json',
-  //     'Content-Type':'application/json'},
-  //     body: JSON.stringify(addfood)
-  //   }).catch((error)=> {return (console.log("bad"))})
-  //   return response.json()
+  //     const response = await fetch("/api/add", {
+  //       method:'POST',
+  //       mode:'cors',
+  //       headers: {'Content-Type':'application/json'},
+  //       body:{foodName:"tortilla", daysfresh:10}
+  //     })
+  //     const data = response.json();
+  //     console.log(data);
   // }
     
   //console.log(foods)
@@ -82,7 +77,7 @@ function App() {
         <label></label><input className="food" type="text" onChange={foodHandler}/>
         <br/><label></label><input className="dateInput" type="text" onChange={dateHandler}/>
             <p>
-             <button >Add to Fridge</button>
+             <button onClick={handleSubmit}>Add to Fridge</button>
             </p>
         </div>
 

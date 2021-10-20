@@ -14,6 +14,8 @@ app.use(
   )
 );
 
+app.use(express.json());
+
 app.use(cors({
   origin: '*'
 }));
@@ -35,8 +37,11 @@ app.get("/api/fridge", async (req,res) => {
 //add foodName daysfresh
 app.post("/api/add", async (req,res) => {
   //const addedFood = req.query.add
-  const foodName = req.query.foodName
-  const daysfresh = Number(req.query.daysfresh)
+  console.log(req)
+  const foodName = req.body.foodName
+  const daysfresh = parseInt(req.body.daysfresh)
+  console.log(daysfresh);
+  console.log(foodName)
   const obj = {foodName:foodName, daysfresh:daysfresh}
 
   await db.table('food').insert(obj)
