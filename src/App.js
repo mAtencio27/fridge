@@ -10,7 +10,8 @@ function App() {
   const [foods,setFoods] = useState([]);
   const [newFood,setNewFood] = useState("");
   const [newDate, setNewDate] = useState("");
-  const [entry, setEntry] = useState({})
+  const [newId, setNewId] = useState("")
+
 
   useEffect(() => {
     const fetchfood = async () => {
@@ -32,11 +33,14 @@ function App() {
     setNewDate(e.target.value)
   }
 
+  function idHandler(e) {
+    e.preventDefault()
+    setNewId(e.target.value)
+  }
+
   async function handleSubmit (e) {
     e.preventDefault()
     let addfood = {"foodName":newFood, "daysfresh":Number(newDate)}
-    //setEntry(`{"foodName":${newFood}, "daysfresh":${Number(newDate)}}`)
-    //let addfood = entry.json()
     console.log(addfood)
     axios.post("/api/add", addfood)
       .then(response => {
@@ -45,6 +49,19 @@ function App() {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  async function handleDelete (e) {
+    e.preventDefault()
+    let deleteItem = {"id":newId}
+    console.log(deleteItem)
+    axios.delete("/api/delete", {data:deleteItem})
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
     
   // async function handleSubmit(e) {
@@ -65,8 +82,7 @@ function App() {
   // }
     
   //console.log(foods)
-  const newob = {foodName : newFood , daysfresh: Number(newDate)}
-  console.log(newob)
+  console.log(newId)
 
 
 
@@ -74,11 +90,18 @@ function App() {
     <div className="App">
       <h1>Fridge Fresh</h1>
       <div className="navbar"> 
-        <label></label><input className="food" type="text" onChange={foodHandler}/>
-        <br/><label></label><input className="dateInput" type="text" onChange={dateHandler}/>
+        <div className="submit">
+        <label>food</label><input className="food" type="text" onChange={foodHandler}/>
+        <br/><label>days</label><input className="dateInput" type="text" onChange={dateHandler}/>
             <p>
              <button onClick={handleSubmit}>Add to Fridge</button>
             </p>
+        </div>
+        <div className="delete">
+          <label>Delete id</label><input type="text" className="idInput" onChange={idHandler}></input>
+          <br/><button onClick={handleDelete}>Delete</button>
+        </div>
+
         </div>
 
         <AllGroceries

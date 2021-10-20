@@ -14,7 +14,7 @@ export default function AllGroceries(props) {
             console.log("food")
         //   props.setCurrentView("SinglePhoto"); //change the state currentView to SinglePhoto when clicked
         //   props.setSelectedPhoto(photo); // chnage the state selectedPhoto to current clicked photo
-        }}>{food.foodName}<br/>Days left:{food.daysfresh}
+        }}>{food.foodName}<br/>Days left:{food.daysfresh} <br/> ID:{food.id}
       </div>
     );
   }

@@ -51,7 +51,9 @@ app.post("/api/add", async (req,res) => {
 
 // ?id
 app.delete("/api/delete" , async (req,res) => {
-  const foodId = Number(req.query.id)
+  //console.log(req)
+  const foodId = parseInt(req.body.id)
+  console.log(foodId)
   const foods = await db.table("food")
   const itemDel = foods.filter((food)=> foodId === food.id)
 
