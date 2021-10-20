@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./knex.js");
+const cors = require('cors')
 
 const app = express();
 
@@ -13,14 +14,20 @@ app.use(
   )
 );
 
+app.use(cors({
+  origin: '*'
+}));
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
+
+
     
 //********************************************************************************* */
 
 app.get("/api/fridge", async (req,res) => {
   const foods = await db.table("food")
-  console.log(foods)
+  //console.log(foods)
   //const returndata = JSON.parse(foods)
   res.json(foods)
 });
@@ -30,11 +37,11 @@ app.post("/api/add", async (req,res) => {
   //const addedFood = req.query.add
   const foodName = req.query.foodName
   const daysfresh = Number(req.query.daysfresh)
-  const obj = {foodName: foodName, daysfresh:daysfresh}
+  const obj = {foodName:foodName, daysfresh:daysfresh}
 
   await db.table('food').insert(obj)
 
-  res.json("added to db", obj)
+  res.json("added to db")
 });
 
 // ?id
